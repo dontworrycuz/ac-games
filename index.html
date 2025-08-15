@@ -1,521 +1,149 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SoccerGear - Soccer Merchandise & Boots</title>
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-  }
-  header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-  }
-  nav {
-    margin-top: 10px;
-  }
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  .hero {
-    background: url('https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
-    padding: 60px 20px;
-    text-align: center;
-  }
-  .hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-  }
-  .hero p {
-    font-size: 1.2em;
-  }
-  section {
-    padding: 40px 20px;
-  }
-  h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-  }
-  .products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .product-card {
-    background-color: #444;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.2s;
-  }
-  .product-card:hover {
-    transform: scale(1.05);
-  }
-  .product-card img {
-    width: 100%;
-    border-radius: 4px;
-  }
-  .product-name {
-    font-weight: bold;
-    margin: 10px 0 5px;
-  }
-  .product-price {
-    color: #0f0;
-    margin-bottom: 10px;
-  }
-  footer {
-    background-color: #333;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-  @media(max-width: 768px){
-    .products {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazeFball - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>CrazeFball</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
 
-<header>
-  <h1>SoccerGear</h1>
-  <nav>
-  <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
-  <a href="reviews.html">Reviews</a>
-  <a href="contact.html">Contact</a>
-</nav
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <main>
+        <h2>Welcome to CrazeFball</h2>
+        <p>Your ultimate hub for football news, reviews, and community fun!</p>
+    </main>
 
-<section class="hero" id="home">
-  <h2>Welcome to SoccerGear</h2>
-  <p>Your one-stop shop for soccer boots, balls, and accessories!</p>
-</section>
-
-<section>
-  <h3>Featured Products</h3>
-  <div class="products">
-    <div class="product-card">
-      <img src="https://images.pexels.com/photos/1329624/pexels-photo-1329624.jpeg" alt="Soccer Boots" />
-      <div class="product-name">Nike Mercurial Vapor</div>
-      <div class="product-price">$150</div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" alt="Soccer Ball" />
-      <div class="product-name">Adidas FIFA World Cup Ball</div>
-      <div class="product-price">$40</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  &copy; 2024 SoccerGear. All rights reserved.
-</footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SoccerGear - Products</title>
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-  }
-  header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-  }
-  nav {
-    margin-top: 10px;
-  }
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  section {
-    padding: 40px 20px;
-  }
-  h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-  }
-  .product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .product-item {
-    background-color: #444;
-    border-radius: 8px;
-    width: 200px;
-    overflow: hidden;
-    padding: 10px;
-    transition: transform 0.2s;
-  }
-  .product-item:hover {
-    transform: scale(1.05);
-  }
-  .product-item img {
-    width: 100%;
-    border-radius: 4px;
-  }
-  .product-title {
-    font-weight: bold;
-    margin: 10px 0 5px;
-  }
-  .product-cost {
-    color: #0f0;
-  }
-  footer {
-    background-color: #333;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>SoccerGear</h1>
- <nav>
-  <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
-  <a href="reviews.html">Reviews</a>
-  <a href="contact.html">Contact</a>
-</nav>
-</header>
-
-<section>
-  <h3>Our Products</h3>
-  <div class="product-grid">
-    <div class="product-item">
-      <img src="https://images.pexels.com/photos/1329624/pexels-photo-1329624.jpeg" alt="Soccer Boots" />
-      <div class="product-title">Nike Mercurial Vapor</div>
-      <div class="product-cost">$150</div>
-    </div>
-    <div class="product-item">
-      <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" alt="Soccer Ball" />
-      <div class="product-title">Adidas FIFA World Cup Ball</div>
-      <div class="product-cost">$40</div>
-    </div>
-    <div class="product-item">
-      <img src="https://images.pexels.com/photos/1646310/pexels-photo-1646310.jpeg" alt="Soccer Jersey" />
-      <div class="product-title">Team Jersey</div>
-      <div class="product-cost">$35</div>
-    </div>
-    <div class="product-item">
-      <img src="https://images.pexels.com/photos/1152937/pexels-photo-1152937.jpeg" alt="Soccer Goal" />
-      <div class="product-title">Portable Soccer Goal</div>
-      <div class="product-cost">$80</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  &copy; 2024 SoccerGear. All rights reserved.
-</footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SoccerGear - Reviews</title>
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-  }
-  header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-  }
-  nav {
-    margin-top: 10px;
-  }
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  section {
-    padding: 40px 20px;
-  }
-  h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-  }
-  .review {
-    background-color: #444;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .review h4 {
-    margin-top: 0;
-  }
-  form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-  }
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  button:hover {
-    background-color: #0c0;
-  }
-  footer {
-    background-color: #333;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>SoccerGear</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-<section>
-  <h3>Customer Reviews</h3>
-  <div id="reviews-container">
-    <!-- Reviews will appear here -->
-  </div>
-  <h3>Leave a Review</h3>
-  <form id="reviewForm">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <textarea id="reviewText" rows="4" placeholder="Your Review" required></textarea>
-    <button type="submit">Submit Review</button>
-  </form>
-</section>
-
-<script>
-  const reviewsContainer = document.getElementById('reviews-container');
-  const form = document.getElementById('reviewForm');
-
-  // Load reviews from local storage or initialize
-  let reviews = JSON.parse(localStorage.getItem('soccerReviews')) || [];
-
-  function displayReviews() {
-    reviewsContainer.innerHTML = '';
-    if (reviews.length === 0) {
-      reviewsContainer.innerHTML = '<p>No reviews yet. Be the first!</p>';
-      return;
-    }
-    reviews.forEach(r => {
-      const div = document.createElement('div');
-      div.className = 'review';
-      div.innerHTML = `<h4>${r.name}</h4><p>${r.text}</p>`;
-      reviewsContainer.appendChild(div);
-    });
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const text = document.getElementById('reviewText').value.trim();
-    if (name && text) {
-      reviews.push({name: name, text: text});
-      localStorage.setItem('soccerReviews', JSON.stringify(reviews));
-      displayReviews();
-      form.reset();
-    }
-  });
-
-  // Initial display
-  displayReviews();
-</script>
-
-<footer>
-  &copy; 2024 SoccerGear. All rights reserved.
-</footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SoccerGear - Contact</title>
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-  }
-  header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 2em;
-  }
-  nav {
-    margin-top: 10px;
-  }
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  section {
-    padding: 40px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  input, textarea {
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-  }
-  button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  button:hover {
-    background-color: #0c0;
-  }
-  footer {
-    background-color: #333;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>SoccerGear</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-<section>
-  <h3>Contact Us</h3>
-  <p>For inquiries, email us at <a href="mailto:info@soccergear.com" style="color:#0f0;">info@soccergear.com</a></p>
-  <p>Phone: (123) 456-7890</p>
-  <p>Address: 123 Soccer Street, Sportstown</p>
-</section>
-
-<footer>
-  &copy; 2024 SoccerGear. All rights reserved.
-</footer>
+    <footer>
+        <p>&copy; 2025 CrazeFball. All rights reserved.</p>
+    </footer>
 </body>
 </html>
+<!-- reviews.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazeFball - Reviews</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CrazeFball</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Reviews</h2>
+        <p>Check out what fans are saying about the latest football matches!</p>
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509134!2d144.95373631531595!3d-37.816279979751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727a89a10c8a0!2sMelbourne%20City!5e0!3m2!1sen!2sau!4v1614301107562!5m2!1sen!2sau"
+                width="250"
+                height="200"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CrazeFball. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazeFball - Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CrazeFball</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Contact Us</h2>
+        <p>Email: support@crazefball.com</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CrazeFball. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #222;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 1rem;
+}
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.map-container {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
