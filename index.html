@@ -1,102 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrazeFball</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav a {
-            color: white;
-            margin-left: 1rem;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 1rem;
-            min-height: 80vh;
-        }
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 0.5rem;
-        }
-        .map-container {
-            position: absolute;
-            top: 120px;
-            right: 20px;
-            border: 2px solid #333;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Crazefball - Home</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>CrazeFball</h1>
-        <nav>
-            <a href="#" onclick="showPage('home')">Home</a>
-            <a href="#" onclick="showPage('reviews')">Reviews</a>
-            <a href="#" onclick="showPage('contact')">Contact</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Crazefball</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </nav>
+  </header>
 
-    <main id="content">
-        <!-- Home page will load here -->
-    </main>
+  <main>
+    <h2>Welcome to Crazefball</h2>
+    <p>Your go-to place for all things Crazefball!</p>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 CrazeFball. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function showPage(page) {
-            const content = document.getElementById('content');
-            if (page === 'home') {
-                content.innerHTML = `
-                    <h2>Welcome to CrazeFball</h2>
-                    <p>Your ultimate hub for football news, reviews, and community fun!</p>
-                `;
-            } else if (page === 'reviews') {
-                content.innerHTML = `
-                    <h2>Reviews</h2>
-                    <p>Check out what fans are saying about the latest football matches!</p>
-                    <div class="map-container">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509134!2d144.95373631531595!3d-37.816279979751934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf0727a89a10c8a0!2sMelbourne%20City!5e0!3m2!1sen!2sau!4v1614301107562!5m2!1sen!2sau"
-                            width="250"
-                            height="200"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                `;
-            } else if (page === 'contact') {
-                content.innerHTML = `
-                    <h2>Contact Us</h2>
-                    <p>Email: support@crazefball.com</p>
-                `;
-            }
-        }
-
-        // Load home page by default
-        showPage('home');
-    </script>
+  <footer>
+    <p>&copy; 2025 Crazefball</p>
+  </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About - Crazefball</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>About Crazefball</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </nav>
+  </header>
+
+  <main>
+    <p>Crazefball is a fictional sport with wild rules and crazier fans. Stay tuned!</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crazefball</p>
+  </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact - Crazefball</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </nav>
+  </header>
+
+  <main>
+    <p>Email: support@crazefball.com</p>
+    <p>Phone: +1 (555) 123-4567</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crazefball</p>
+  </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reviews - Crazefball</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Reviews</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="reviewForm">
+      <h2>Leave a Review</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="review">Your Review:</label>
+      <textarea id="review" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <section id="reviewList">
+      <h3>User Reviews</h3>
+      <!-- Reviews will be added here dynamically -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crazefball</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #333;
+  color: white;
+  padding: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("reviewForm");
+  const reviewList = document.getElementById("reviewList");
+
+  form?.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const reviewText = document.getElementById("review").value.trim();
+
+    if (name && reviewText) {
+      const reviewItem = document.createElement("div");
+      reviewItem.innerHTML = `<strong>${name}</strong>: <p>${reviewText}</p>`;
+      reviewList.appendChild(reviewItem);
+
+      form.reset();
+    }
+  });
+});
