@@ -17,8 +17,8 @@
   </header>
 
   <main>
-    <h2>Welcome to Crazefball</h2>
-    <p>Your go-to place for all things Crazefball!</p>
+    <h2>Welcome to Crazefball!</h2>
+    <p>Crazefball is the most exciting fictional sport you've never heard of. Stay tuned!</p>
   </main>
 
   <footer>
@@ -45,7 +45,7 @@
   </header>
 
   <main>
-    <p>Crazefball is a fictional sport with wild rules and crazier fans. Stay tuned!</p>
+    <p>Crazefball is a high-energy, fan-fueled, fictional sport where anything goes. Think dodgeball meets pinball meets chaos!</p>
   </main>
 
   <footer>
@@ -72,8 +72,8 @@
   </header>
 
   <main>
-    <p>Email: support@crazefball.com</p>
-    <p>Phone: +1 (555) 123-4567</p>
+    <p>Email us at <a href="mailto:hello@crazefball.com">hello@crazefball.com</a></p>
+    <p>Follow us on social media @Crazefball</p>
   </main>
 
   <footer>
@@ -90,7 +90,7 @@
 </head>
 <body>
   <header>
-    <h1>Reviews</h1>
+    <h1>User Reviews</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -100,20 +100,22 @@
   </header>
 
   <main>
-    <form id="reviewForm">
-      <h2>Leave a Review</h2>
-      <label for="name">Name:</label>
-      <input type="text" id="name" required />
+    <section>
+      <form id="reviewForm">
+        <h2>Leave a Review</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required />
 
-      <label for="review">Your Review:</label>
-      <textarea id="review" required></textarea>
+        <label for="message">Review:</label>
+        <textarea id="message" required></textarea>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
-    <section id="reviewList">
-      <h3>User Reviews</h3>
-      <!-- Reviews will be added here dynamically -->
+    <section id="reviews">
+      <h3>What people are saying:</h3>
+      <!-- Reviews appear here -->
     </section>
   </main>
 
@@ -128,68 +130,72 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: #f8f8f8;
+  color: #333;
 }
 
 header {
-  background: #333;
-  color: white;
-  padding: 10px;
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 1em;
 }
 
 nav a {
-  margin: 0 10px;
   color: white;
+  margin-right: 1em;
   text-decoration: none;
 }
 
 main {
-  padding: 20px;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-input, textarea {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 8px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
+  padding: 2em;
 }
 
 footer {
-  background: #333;
+  background-color: #1a1a1a;
   color: white;
   text-align: center;
-  padding: 10px;
-  position: relative;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+form input, form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
+
+form button {
+  padding: 0.5em 1em;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+#reviews div {
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+  margin-top: 1em;
 }
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reviewForm");
-  const reviewList = document.getElementById("reviewList");
+  const reviewsSection = document.getElementById("reviews");
 
-  form?.addEventListener("submit", function (e) {
+  form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
-    const reviewText = document.getElementById("review").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    if (name && reviewText) {
-      const reviewItem = document.createElement("div");
-      reviewItem.innerHTML = `<strong>${name}</strong>: <p>${reviewText}</p>`;
-      reviewList.appendChild(reviewItem);
+    if (name && message) {
+      const reviewDiv = document.createElement("div");
+      reviewDiv.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+      reviewsSection.appendChild(reviewDiv);
 
       form.reset();
     }
