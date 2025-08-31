@@ -452,39 +452,40 @@
       <section id="about" class="page" style="display: none;">
         <div class="about-hero text-center">
           <h2 class="about-title">About CrazeFball</h2>
-          <p class="about-subtitle">Your premier destination for quality football accessories</p>
+          <p class="about-subtitle">Premium football gear for every player</p>
         </div>
         
-        <div class="story-section">
-          <div class="story-grid grid">
-            <div class="story-text">
-              <h3>Our Story</h3>
-              <p>CrazeFball was born from a simple belief: every football player deserves access to premium gear without the premium price tag. Founded by passionate football enthusiasts, we've dedicated ourselves to sourcing the highest quality accessories.</p>
-              <h3>What We Do</h3>
-              <p>We specialize in carefully curated football accessories - from professional-grade cleats and protective gear to training equipment and fan merchandise. Every product is tested by real players.</p>
-            </div>
-            <div class="story-visual">
-              <div class="visual-element">
-                <div class="big-football">🏈</div>
-                <div class="quality-badge">Premium Quality</div>
-              </div>
-            </div>
+        <div class="about-cards grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 3rem;">
+          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🏆</div>
+            <h3 style="color: #333; margin-bottom: 1rem;">Our Mission</h3>
+            <p style="color: #666;">Premium gear without premium prices</p>
+          </div>
+          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
+            <h3 style="color: #333; margin-bottom: 1rem;">Our Promise</h3>
+            <p style="color: #666;">Quality tested by real players</p>
+          </div>
+          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+            <h3 style="color: #333; margin-bottom: 1rem;">Our Vision</h3>
+            <p style="color: #666;">Empowering every football dream</p>
           </div>
         </div>
         
         <div class="benefits-section">
-          <h3 class="section-title gradient-text text-center">Why Choose CrazeFball?</h3>
+          <h3 class="section-title gradient-text text-center">Why Choose Us?</h3>
           <div class="benefits-grid grid grid-auto" id="benefitsGrid"></div>
         </div>
         
         <div class="team-section">
-          <h3 class="section-title gradient-text text-center">Meet Our Team</h3>
+          <h3 class="section-title gradient-text text-center">Our Team</h3>
           <div class="team-grid grid grid-auto" id="teamGrid"></div>
         </div>
         
         <div class="final-cta text-center">
           <h3>Ready to Gear Up?</h3>
-          <p>Join thousands of satisfied customers and experience the CrazeFball difference</p>
+          <p>Join thousands of satisfied customers</p>
           <button class="btn btn-primary" onclick="App.showPage('shop')" style="margin-top: 1.5rem;">Shop Now 🏈</button>
         </div>
       </section>
@@ -503,20 +504,20 @@
           </div>
           <div class="form-row grid">
             <div class="floating-input">
-              <input type="text" id="contactName" required>
+              <input type="text" id="contactName" placeholder=" " required>
               <label>Your Name</label>
             </div>
             <div class="floating-input">
-              <input type="email" id="contactEmail" required>
+              <input type="email" id="contactEmail" placeholder=" " required>
               <label>Your Email</label>
             </div>
           </div>
           <div class="floating-input form-full">
-            <input type="text" id="contactSubject" required>
+            <input type="text" id="contactSubject" placeholder=" " required>
             <label>Subject</label>
           </div>
           <div class="floating-input">
-            <textarea id="contactMessage" rows="5" required></textarea>
+            <textarea id="contactMessage" rows="5" placeholder=" " required></textarea>
             <label>Your Message</label>
           </div>
           <button type="button" onclick="Contact.submit()" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
@@ -539,7 +540,7 @@
           </div>
           <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Name</label>
-            <input type="text" id="reviewName" style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9);" required>
+            <input type="text" id="reviewName" placeholder=" " style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9); font-size: 1rem;" required>
           </div>
           <div class="text-center" style="margin: 2rem 0;">
             <label style="display: block; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Rate your experience</label>
@@ -547,7 +548,7 @@
           </div>
           <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Review</label>
-            <textarea id="reviewMessage" rows="4" style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9);" required></textarea>
+            <textarea id="reviewMessage" rows="4" placeholder=" " style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9); font-size: 1rem; resize: vertical;" required></textarea>
           </div>
           <button type="button" onclick="Reviews.submit()" class="btn btn-primary" style="width: 100%;">Submit Review ✨</button>
         </div>
