@@ -2,161 +2,830 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Crazefball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrazeFball - Premium Football Accessories</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background: #f2f2f2;
+      box-sizing: border-box;
     }
-
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
     header {
-      background: #333;
-      color: white;
-      padding: 1em;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff6b35, #f7931e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
     nav a {
-      color: white;
+      color: #333;
       text-decoration: none;
-      margin-right: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
     }
-
+    
     nav a:hover {
-      text-decoration: underline;
+      color: #ff6b35;
     }
-
-    main {
-      padding: 2em;
+    
+    nav a.active {
+      color: #ff6b35;
     }
-
-    h1, h2 {
-      color: #222;
+    
+    .cart-btn {
+      background: #ff6b35;
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      position: relative;
+      transition: all 0.3s ease;
     }
-
-    form {
+    
+    .cart-btn:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+    
+    .cart-count {
       background: #fff;
-      padding: 1em;
-      margin-top: 1em;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 0.5em 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    button {
-      background: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    .review {
-      background: white;
-      padding: 1em;
-      margin-top: 1em;
-      border-left: 5px solid #007bff;
-    }
-
-    footer {
-      background: #333;
-      color: white;
+      color: #ff6b35;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      min-width: 20px;
       text-align: center;
-      padding: 1em;
-      margin-top: 2em;
+    }
+    
+    main {
+      padding: 2rem 0;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: linear-gradient(45deg, #ff6b35, #f7931e);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+    }
+    
+    .page {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-image {
+      height: 200px;
+      background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .product-info {
+      padding: 1.5rem;
+    }
+    
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .product-price {
+      font-size: 1.4rem;
+      color: #ff6b35;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    
+    .add-to-cart {
+      background: #ff6b35;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .add-to-cart:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+    
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 1000;
+    }
+    
+    .cart-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .quantity-btn {
+      background: #ff6b35;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .close-cart {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+    
+    .checkout-btn {
+      background: linear-gradient(45deg, #28a745, #20c997);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ff6b35;
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      margin-bottom: 1rem;
+    }
+    
+    .review-item {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 15px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #ff6b35;
+    }
+    
+    .review-rating {
+      color: #ffc107;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Crazefball</h1>
-    <nav>
-      <a href="#home" onclick="showPage('home')">Home</a>
-      <a href="#about" onclick="showPage('about')">About</a>
-      <a href="#contact" onclick="showPage('contact')">Contact</a>
-      <a href="#reviews" onclick="showPage('reviews')">Reviews</a>
-    </nav>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">⚽ CrazeFball</div>
+        <nav>
+          <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
+          <a href="#" onclick="showPage('shop')" class="nav-link">Shop</a>
+          <a href="#" onclick="showPage('about')" class="nav-link">About</a>
+          <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
+          <a href="#" onclick="showPage('reviews')" class="nav-link">Reviews</a>
+          <a href="#" onclick="toggleCart()" class="cart-btn">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section id="home" class="page">
-      <h2>Welcome to Crazefball</h2>
-      <p>The greatest and cheapest luxry football items for discounted and chep  prices !</p>
-    </section>
+    <div class="container">
+      <!-- Home Page -->
+      <section id="home" class="page">
+        <div class="hero">
+          <h1>Premium Football Accessories</h1>
+          <p>Discover the finest football gear at unbeatable prices. Quality guaranteed, passion delivered!</p>
+          <button class="cta-btn" onclick="showPage('shop')">Shop Now</button>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">1000+</div>
+            <p>Happy Customers</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <p>Premium Products</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <p>Customer Support</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">99%</div>
+            <p>Satisfaction Rate</p>
+          </div>
+        </div>
+      </section>
 
-    <section id="about" class="page" style="display: none;">
-      <h2>About Crazefball</h2>
-      <p>Crazefball is an online store where only the best of the best items allowed to be sold and no low quality and crappy and overpriced products are sold!!</p>
-    </section>
+      <!-- Shop Page -->
+      <section id="shop" class="page" style="display: none;">
+        <h2>Football Accessories Collection</h2>
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here by JavaScript -->
+        </div>
+      </section>
 
-    <section id="contact" class="page" style="display: none;">
-      <h2>Contact Us</h2>
-      <p>Email us: <a href="mailto:support@crazefball.com">support@crazefball.com</a></p>
-      <p>Follow us on social media: @Crazefball</p>
-    </section>
+      <!-- About Page -->
+      <section id="about" class="page" style="display: none;">
+        <h2>About CrazeFball</h2>
+        <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+          CrazeFball is your premier destination for high-quality football accessories. We're passionate about the beautiful game and committed to providing players, coaches, and fans with the best gear at competitive prices.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+          Our carefully curated selection includes everything from professional-grade cleats and training equipment to fan merchandise and collectibles. Every product is hand-selected for quality, durability, and performance.
+        </p>
+        <div style="background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; padding: 2rem; border-radius: 15px; text-align: center;">
+          <h3>Our Promise</h3>
+          <p>Premium quality • Competitive prices • Fast shipping • 100% satisfaction guarantee</p>
+        </div>
+      </section>
 
-    <section id="reviews" class="page" style="display: none;">
-      <h2>User Reviews</h2>
+      <!-- Contact Page -->
+      <section id="contact" class="page" style="display: none;">
+        <h2>Get In Touch</h2>
+        <div class="contact-form">
+          <div style="margin-bottom: 2rem;">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> support@crazefball.com</p>
+            <p><strong>Phone:</strong> 1-800-FOOTBALL</p>
+            <p><strong>Address:</strong> 123 Stadium Way, Sports City, SC 12345</p>
+            <p><strong>Hours:</strong> Monday-Friday 9AM-6PM EST</p>
+          </div>
+          
+          <h3>Send us a Message</h3>
+          <input type="text" id="contactName" placeholder="Your Name" required>
+          <input type="email" id="contactEmail" placeholder="Your Email" required>
+          <input type="text" id="contactSubject" placeholder="Subject" required>
+          <textarea id="contactMessage" placeholder="Your Message" rows="5" required></textarea>
+          <button type="button" onclick="submitContact()" class="cta-btn" style="width: 100%;">Send Message</button>
+        </div>
+      </section>
 
-      <form id="reviewForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-
-        <label for="message">Your Review:</label>
-        <textarea id="message" required></textarea>
-
-        <button type="submit">Submit Review</button>
-      </form>
-
-      <div id="reviewList"></div>
-    </section>
+      <!-- Reviews Page -->
+      <section id="reviews" class="page" style="display: none;">
+        <h2>Customer Reviews</h2>
+        
+        <div class="contact-form">
+          <h3>Share Your Experience</h3>
+          <input type="text" id="reviewName" placeholder="Your Name" required>
+          <div style="margin: 1rem 0;">
+            <label>Rating:</label>
+            <div class="rating-input" style="margin-top: 0.5rem;">
+              <span onclick="setRating(1)" class="star" data-rating="1">⭐</span>
+              <span onclick="setRating(2)" class="star" data-rating="2">⭐</span>
+              <span onclick="setRating(3)" class="star" data-rating="3">⭐</span>
+              <span onclick="setRating(4)" class="star" data-rating="4">⭐</span>
+              <span onclick="setRating(5)" class="star" data-rating="5">⭐</span>
+            </div>
+          </div>
+          <textarea id="reviewMessage" placeholder="Tell us about your experience..." rows="4" required></textarea>
+          <button type="button" onclick="submitReview()" class="cta-btn" style="width: 100%;">Submit Review</button>
+        </div>
+        
+        <div id="reviewsList">
+          <!-- Sample reviews -->
+          <div class="review-item">
+            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            <strong>Mike Johnson</strong>
+            <p>Amazing quality cleats! The comfort and grip are outstanding. Definitely recommend CrazeFball for serious players.</p>
+          </div>
+          
+          <div class="review-item">
+            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            <strong>Sarah Chen</strong>
+            <p>Fast shipping and excellent customer service. My son loves his new training gear!</p>
+          </div>
+          
+          <div class="review-item">
+            <div class="review-rating">⭐⭐⭐⭐</div>
+            <strong>Carlos Rodriguez</strong>
+            <p>Great selection of products. Prices are very competitive. Will definitely shop here again.</p>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Crazefball</p>
+  <!-- Cart Overlay -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()">
+    <div class="cart-modal" onclick="event.stopPropagation()">
+      <button class="close-cart" onclick="closeCart()">×</button>
+      <h3>Shopping Cart</h3>
+      <div id="cartItems"></div>
+      <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #eee;">
+        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">
+          <span>Total: $<span id="cartTotal">0.00</span></span>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background: rgba(255, 255, 255, 0.1); color: white; text-align: center; padding: 2rem; margin-top: 3rem;">
+    <div class="container">
+      <p>&copy; 2025 CrazeFball - Premium Football Accessories</p>
+      <p style="margin-top: 0.5rem; opacity: 0.8;">Follow us: @CrazeFball | Email: support@crazefball.com</p>
+    </div>
   </footer>
 
   <script>
-    function showPage(id) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(page => {
+    // Product data
+    const products = [
+      {
+        id: 1,
+        name: "Professional Football Cleats",
+        price: 89.99,
+        emoji: "👟",
+        description: "High-performance cleats for serious players"
+      },
+      {
+        id: 2,
+        name: "Training Cones Set",
+        price: 24.99,
+        emoji: "🔺",
+        description: "Professional training cones (12 pack)"
+      },
+      {
+        id: 3,
+        name: "Football Gloves",
+        price: 34.99,
+        emoji: "🧤",
+        description: "Grip-enhanced receiver gloves"
+      },
+      {
+        id: 4,
+        name: "Team Jersey",
+        price: 59.99,
+        emoji: "👕",
+        description: "Official team replica jersey"
+      },
+      {
+        id: 5,
+        name: "Football Helmet",
+        price: 149.99,
+        emoji: "⛑️",
+        description: "Safety-certified protective helmet"
+      },
+      {
+        id: 6,
+        name: "Shoulder Pads",
+        price: 79.99,
+        emoji: "🦺",
+        description: "Lightweight protective shoulder pads"
+      },
+      {
+        id: 7,
+        name: "Football",
+        price: 29.99,
+        emoji: "🏈",
+        description: "Official size regulation football"
+      },
+      {
+        id: 8,
+        name: "Water Bottle",
+        price: 19.99,
+        emoji: "🍶",
+        description: "Insulated sports water bottle"
+      },
+      {
+        id: 9,
+        name: "Team Scarf",
+        price: 22.99,
+        emoji: "🧣",
+        description: "Official team supporter scarf"
+      }
+    ];
+
+    // Cart functionality
+    let cart = [];
+    let currentRating = 0;
+
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
         page.style.display = 'none';
       });
-      document.getElementById(id).style.display = 'block';
+      
+      // Show selected page
+      document.getElementById(pageId).style.display = 'block';
+      
+      // Update navigation
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Load products if shop page
+      if (pageId === 'shop') {
+        loadProducts();
+      }
     }
 
-    // Review form logic
-    document.getElementById('reviewForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const message = document.getElementById('message').value.trim();
+    function loadProducts() {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = products.map(product => `
+        <div class="product-card">
+          <div class="product-image">
+            ${product.emoji}
+          </div>
+          <div class="product-info">
+            <div class="product-name">${product.name}</div>
+            <div class="product-price">$${product.price}</div>
+            <p style="color: #666; margin-bottom: 1rem;">${product.description}</p>
+            <button class="add-to-cart" onclick="addToCart(${product.id})">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
 
-      if (name && message) {
-        const review = document.createElement('div');
-        review.className = 'review';
-        review.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
-        document.getElementById('reviewList').appendChild(review);
-        this.reset();
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const existingItem = cart.find(item => item.id === productId);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      
+      updateCartCount();
+      
+      // Show brief animation
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = 'Added!';
+      btn.style.background = '#28a745';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '#ff6b35';
+      }, 1000);
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    function toggleCart() {
+      const overlay = document.getElementById('cartOverlay');
+      if (overlay.style.display === 'block') {
+        closeCart();
+      } else {
+        showCart();
+      }
+    }
+
+    function showCart() {
+      updateCartDisplay();
+      document.getElementById('cartOverlay').style.display = 'block';
+    }
+
+    function closeCart() {
+      document.getElementById('cartOverlay').style.display = 'none';
+    }
+
+    function updateCartDisplay() {
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align: center; color: #666;">Your cart is empty</p>';
+        cartTotal.textContent = '0.00';
+        return;
+      }
+      
+      cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div>
+            <strong>${item.name}</strong>
+            <div style="color: #666;">$${item.price} each</div>
+          </div>
+          <div class="quantity-controls">
+            <button class="quantity-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
+            <span style="margin: 0 0.5rem;">${item.quantity}</span>
+            <button class="quantity-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+            <button onclick="removeFromCart(${item.id})" style="margin-left: 1rem; background: #dc3545; color: white; border: none; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;">Remove</button>
+          </div>
+        </div>
+      `).join('');
+      
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      cartTotal.textContent = total.toFixed(2);
+    }
+
+    function changeQuantity(productId, change) {
+      const item = cart.find(item => item.id === productId);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          removeFromCart(productId);
+        } else {
+          updateCartDisplay();
+          updateCartCount();
+        }
+      }
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      updateCartDisplay();
+      updateCartCount();
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      alert(`Thank you for your order! Total: $${total.toFixed(2)}\n\nThis is a demo store. In a real implementation, this would redirect to a payment processor.`);
+      
+      // Clear cart
+      cart = [];
+      updateCartCount();
+      closeCart();
+    }
+
+    function setRating(rating) {
+      currentRating = rating;
+      document.querySelectorAll('.star').forEach((star, index) => {
+        star.style.opacity = index < rating ? '1' : '0.3';
+      });
+    }
+
+    function submitReview() {
+      const name = document.getElementById('reviewName').value.trim();
+      const message = document.getElementById('reviewMessage').value.trim();
+      
+      if (!name || !message || currentRating === 0) {
+        alert('Please fill in all fields and select a rating.');
+        return;
+      }
+      
+      const reviewsList = document.getElementById('reviewsList');
+      const newReview = document.createElement('div');
+      newReview.className = 'review-item';
+      newReview.innerHTML = `
+        <div class="review-rating">${'⭐'.repeat(currentRating)}</div>
+        <strong>${name}</strong>
+        <p>${message}</p>
+      `;
+      
+      reviewsList.insertBefore(newReview, reviewsList.firstChild);
+      
+      // Reset form
+      document.getElementById('reviewName').value = '';
+      document.getElementById('reviewMessage').value = '';
+      setRating(0);
+      
+      alert('Thank you for your review!');
+    }
+
+    function submitContact() {
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      
+      if (!name || !email || !subject || !message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+      
+      alert('Thank you for contacting us! We\'ll get back to you within 24 hours.');
+      
+      // Reset form
+      document.getElementById('contactName').value = '';
+      document.getElementById('contactEmail').value = '';
+      document.getElementById('contactSubject').value = '';
+      document.getElementById('contactMessage').value = '';
+    }
+
+    // Initialize the page
+    loadProducts();
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeCart();
       }
     });
-
-    // Show home page by default
-    showPage('home');
   </script>
-
 </body>
 </html>
