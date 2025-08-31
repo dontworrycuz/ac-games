@@ -4,407 +4,569 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CrazeFball - Premium Football Accessories</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
       --primary: #ff6b35;
       --secondary: #f7931e;
-      --accent: #ffcc02;
-      --dark: #0f0f23;
-      --dark-alt: #1a1a2e;
       --purple: #667eea;
       --purple-alt: #764ba2;
+      --dark: #0f0f23;
       --white: #ffffff;
-      --gray-light: #f8f9fa;
       --gray: #666;
+      --gray-light: #f8f9fa;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
       --transition: all 0.3s ease;
-      --border-radius: 20px;
+      --radius: 20px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 50%, #16213e 100%);
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 50%, #16213e 100%);
       color: #333;
       min-height: 100vh;
     }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-    /* Utility Classes */
-    .btn { 
-      padding: 1rem 2rem; 
-      border: none; 
-      border-radius: 50px; 
-      font-weight: bold; 
-      cursor: pointer; 
-      transition: var(--transition); 
-      text-decoration: none; 
-      display: inline-block; 
-    }
-    .btn-primary { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4); }
-    .gradient-text { background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .card { background: var(--white); border-radius: var(--border-radius); box-shadow: var(--shadow); transition: var(--transition); }
-    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-    .glassmorphism { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); }
-    .text-center { text-align: center; }
     .grid { display: grid; gap: 2rem; }
     .grid-auto { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .text-center { text-align: center; }
+    .gradient-text { background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
 
     /* Header */
-    header { 
-      background: rgba(255, 255, 255, 0.98); 
-      backdrop-filter: blur(20px); 
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-    }
-    
-    .header-content { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-    .logo { font-size: 2rem; font-weight: 800; }
-    nav { display: flex; gap: 2rem; align-items: center; }
-    nav a { color: #333; text-decoration: none; font-weight: 500; transition: var(--transition); }
-    nav a:hover, nav a.active { color: var(--primary); }
-    
-    .cart-btn { 
-      background: var(--primary); 
-      color: white !important; 
-      padding: 0.5rem 1rem; 
-      border-radius: 25px; 
-      position: relative; 
-    }
-    .cart-count { 
-      background: var(--white); 
-      color: var(--primary); 
-      border-radius: 50%; 
-      padding: 2px 6px; 
-      font-size: 0.8rem; 
-      position: absolute; 
-      top: -8px; 
-      right: -8px; 
-      min-width: 20px; 
-      text-align: center; 
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    /* Hero Section */
-    .hero { 
-      text-align: center; 
-      padding: 6rem 0; 
-      color: white; 
-      position: relative; 
-      overflow: hidden; 
-    }
-    .hero::before { 
-      content: ''; 
-      position: absolute; 
-      inset: 0; 
-      background: rgba(0, 0, 0, 0.4); 
-      z-index: 1; 
-    }
-    .hero-content { position: relative; z-index: 2; }
-    .hero h1 { 
-      font-size: 4rem; 
-      margin-bottom: 1.5rem; 
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
-      font-weight: 900; 
-    }
-    .hero p { 
-      font-size: 1.3rem; 
-      margin-bottom: 2.5rem; 
-      opacity: 0.95; 
-      max-width: 600px; 
-      margin-left: auto; 
-      margin-right: auto; 
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
     }
 
-    /* Animations */
-    .football-animation { position: absolute; inset: 0; z-index: 0; }
-    .football { 
-      position: absolute; 
-      font-size: 2rem; 
-      opacity: 0.1; 
-      animation: float 10s ease-in-out infinite; 
-      color: var(--primary); 
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), #ffcc02);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--primary);
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      position: relative;
+    }
+
+    .cart-count {
+      background: var(--white);
+      color: var(--primary);
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 0;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      font-weight: 900;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .football-animation {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .football {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.1;
+      animation: float 10s ease-in-out infinite;
+      color: var(--primary);
+    }
+
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(180deg); }
     }
 
-    /* Page Styles */
-    .page { 
-      background: rgba(255, 255, 255, 0.98); 
-      backdrop-filter: blur(20px); 
-      border-radius: 24px; 
-      padding: 3rem; 
-      margin: 3rem 0; 
-      box-shadow: var(--shadow); 
-      border: 1px solid rgba(255, 255, 255, 0.2); 
+    /* Page */
+    .page {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 3rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow);
     }
 
-    /* Product Cards */
-    .product-card { overflow: hidden; position: relative; }
-    .product-image { 
-      height: 200px; 
-      background: linear-gradient(45deg, var(--purple), var(--purple-alt)); 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      color: white; 
-      font-size: 3rem; 
+    /* Products */
+    .product-card {
+      overflow: hidden;
     }
-    .product-info { padding: 1.5rem; }
-    .product-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; }
-    .product-price { font-size: 1.4rem; color: var(--primary); font-weight: bold; margin-bottom: 1rem; }
-    .add-to-cart { 
-      background: var(--primary); 
-      color: white; 
-      border: none; 
-      padding: 0.75rem 1.5rem; 
-      border-radius: 25px; 
-      font-weight: bold; 
-      width: 100%; 
-      cursor: pointer; 
-      transition: var(--transition); 
+
+    .product-image {
+      height: 200px;
+      background: linear-gradient(45deg, var(--purple), var(--purple-alt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
     }
-    .add-to-cart:hover { background: #e55a2b; transform: translateY(-2px); }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .add-to-cart {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .add-to-cart:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
 
     /* Stats */
-    .stats { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 2rem 0; }
-    .stat-card { 
-      background: rgba(255, 255, 255, 0.9); 
-      padding: 2rem; 
-      border-radius: 15px; 
-      text-align: center; 
-      backdrop-filter: blur(10px); 
-    }
-    .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
-
-    /* About Page */
-    .about-hero { 
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
-      color: white; 
-      padding: 3rem; 
-      border-radius: var(--border-radius); 
-      margin-bottom: 3rem; 
-    }
-    .about-title { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; }
-    .about-subtitle { font-size: 1.2rem; opacity: 0.95; }
-    
-    .story-section { margin-bottom: 3rem; }
-    .story-grid { grid-template-columns: 2fr 1fr; align-items: center; }
-    .story-text h3 { color: #333; font-size: 1.8rem; margin: 2rem 0 1rem 0; font-weight: 700; }
-    .story-text h3:first-child { margin-top: 0; }
-    .story-text p { color: var(--gray); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
-    
-    .visual-element { 
-      background: linear-gradient(135deg, var(--gray-light) 0%, #e9ecef 100%); 
-      padding: 3rem; 
-      border-radius: var(--border-radius); 
-      box-shadow: var(--shadow); 
-      text-align: center; 
-    }
-    .big-football { font-size: 5rem; margin-bottom: 1rem; }
-    .quality-badge { 
-      background: linear-gradient(45deg, var(--primary), var(--secondary)); 
-      color: white; 
-      padding: 0.8rem 1.5rem; 
-      border-radius: 25px; 
-      font-weight: bold; 
-      display: inline-block; 
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
     }
 
-    .section-title { 
-      font-size: 2.5rem; 
-      margin-bottom: 2.5rem; 
-      font-weight: 800; 
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
     }
 
-    .benefit-card { padding: 2rem; text-align: center; }
-    .benefit-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .benefit-card h4 { color: #333; font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 700; }
-    .benefit-card p { color: var(--gray); }
-
-    .team-member { padding: 2.5rem; text-align: center; }
-    .member-avatar { 
-      width: 70px; 
-      height: 70px; 
-      border-radius: 50%; 
-      background: linear-gradient(45deg, var(--primary), var(--secondary)); 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-weight: bold; 
-      color: white; 
-      font-size: 1.5rem; 
-      margin: 0 auto 1.5rem auto; 
-    }
-    .member-role { color: var(--primary); font-weight: 600; margin-bottom: 1rem; }
-    .member-bio { color: var(--gray); line-height: 1.5; }
-
-    .final-cta { 
-      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%); 
-      padding: 3rem; 
-      border-radius: var(--border-radius); 
-      color: white; 
+    /* About */
+    .about-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 3rem;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
     }
 
-    /* Contact Form */
-    .contact-info { 
-      background: rgba(255, 255, 255, 0.9); 
-      padding: 2rem; 
-      border-radius: var(--border-radius); 
-      margin-bottom: 3rem; 
-      box-shadow: var(--shadow); 
+    .about-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
     }
-    .contact-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center; }
-    .contact-item { padding: 1rem; }
-    .contact-icon { font-size: 2rem; margin-bottom: 0.5rem; }
 
-    .contact-form { 
-      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%); 
-      padding: 3rem; 
-      border-radius: 24px; 
-      color: white; 
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 800;
     }
-    .form-title { font-size: 2rem; margin-bottom: 0.5rem; }
-    .form-subtitle { opacity: 0.9; margin-bottom: 2rem; font-size: 1.1rem; }
-    .form-row { grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem; }
-    .form-full { grid-column: 1 / -1; }
 
-    .floating-input { position: relative; margin-bottom: 1.5rem; }
-    .floating-input input, .floating-input textarea { 
-      width: 100%; 
-      padding: 1.2rem 1rem 0.8rem; 
-      border: 2px solid rgba(255, 255, 255, 0.2); 
-      border-radius: 12px; 
-      background: rgba(255, 255, 255, 0.1); 
-      color: white; 
-      font-size: 1rem; 
-      outline: none; 
-      transition: var(--transition); 
+    .benefit-card {
+      padding: 2rem;
+      text-align: center;
     }
-    .floating-input input::placeholder, .floating-input textarea::placeholder { color: transparent; }
-    .floating-input label { 
-      position: absolute; 
-      top: 1rem; 
-      left: 1rem; 
-      color: rgba(255, 255, 255, 0.7); 
-      transition: var(--transition); 
-      pointer-events: none; 
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    .floating-input input:focus, .floating-input textarea:focus { 
-      border-color: rgba(255, 255, 255, 0.8); 
-      background: rgba(255, 255, 255, 0.2); 
+
+    .benefit-card h4 {
+      color: #333;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
     }
-    .floating-input input:focus + label, 
-    .floating-input input:not(:placeholder-shown) + label,
-    .floating-input textarea:focus + label, 
-    .floating-input textarea:not(:placeholder-shown) + label { 
-      top: 0.2rem; 
-      left: 0.8rem; 
-      font-size: 0.8rem; 
-      background: rgba(102, 126, 234, 0.8); 
-      padding: 0.2rem 0.5rem; 
-      border-radius: 6px; 
+
+    .benefit-card p {
+      color: var(--gray);
+    }
+
+    .team-member {
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .member-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .member-role {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .member-bio {
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .final-cta {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%);
+      padding: 3rem;
+      border-radius: var(--radius);
+      color: white;
+    }
+
+    /* Contact */
+    .contact-info {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-item {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-form {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%);
+      padding: 3rem;
+      border-radius: 24px;
+      color: white;
+    }
+
+    .form-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1.2rem 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      border-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
 
     /* Reviews */
-    .review-form { 
-      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%); 
-      padding: 3rem; 
-      border-radius: var(--border-radius); 
-      margin-bottom: 3rem; 
-      color: white; 
+    .review-form {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple-alt) 100%);
+      padding: 3rem;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
+      color: white;
     }
-    .rating-stars { display: flex; justify-content: center; gap: 0.5rem; margin: 1rem 0; }
-    .star { font-size: 2.5rem; cursor: pointer; opacity: 0.3; transition: var(--transition); }
-    .star:hover, .star.active { opacity: 1; transform: scale(1.2); }
 
-    .review-card { 
-      padding: 2rem; 
-      border-left: 5px solid var(--primary); 
-      position: relative; 
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
-    .review-card::before { 
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      height: 4px; 
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); 
+
+    .star {
+      font-size: 2.5rem;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: var(--transition);
     }
-    .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .reviewer-info { display: flex; align-items: center; gap: 1rem; }
-    .reviewer-avatar { 
-      width: 50px; 
-      height: 50px; 
-      border-radius: 50%; 
-      background: linear-gradient(45deg, var(--primary), var(--secondary)); 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-weight: bold; 
-      color: white; 
+
+    .star:hover,
+    .star.active {
+      opacity: 1;
+      transform: scale(1.2);
     }
-    .review-text { color: #555; line-height: 1.6; font-style: italic; }
-    .review-date { color: #999; font-size: 0.9rem; margin-top: 1rem; text-align: right; }
+
+    .review-card {
+      padding: 2rem;
+      border-left: 5px solid var(--primary);
+      position: relative;
+    }
+
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), #ffcc02);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .review-text {
+      color: #555;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .review-date {
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      text-align: right;
+    }
 
     /* Cart */
-    .cart-overlay { 
-      position: fixed; 
-      inset: 0; 
-      background: rgba(0, 0, 0, 0.7); 
-      display: none; 
-      z-index: 1000; 
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 1000;
     }
-    .cart-modal { 
-      position: fixed; 
-      top: 50%; 
-      left: 50%; 
-      transform: translate(-50%, -50%); 
-      background: white; 
-      padding: 2rem; 
-      border-radius: var(--border-radius); 
-      max-width: 500px; 
-      width: 90%; 
-      max-height: 80vh; 
-      overflow-y: auto; 
+
+    .cart-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
     }
-    .cart-item { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 1rem 0; 
-      border-bottom: 1px solid #eee; 
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
     }
-    .quantity-controls { display: flex; align-items: center; gap: 0.5rem; }
-    .quantity-btn { 
-      background: var(--primary); 
-      color: white; 
-      border: none; 
-      width: 30px; 
-      height: 30px; 
-      border-radius: 50%; 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .header-content { flex-direction: column; gap: 1rem; }
-      nav { flex-wrap: wrap; gap: 1rem; }
-      .hero h1 { font-size: 2.5rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .story-grid { grid-template-columns: 1fr; }
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-title {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
@@ -412,7 +574,7 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <div class="logo gradient-text">⚽ CrazeFball</div>
+        <div class="logo">⚽ CrazeFball</div>
         <nav>
           <a href="#" onclick="App.showPage('home')" class="nav-link active">Home</a>
           <a href="#" onclick="App.showPage('shop')" class="nav-link">Shop</a>
@@ -452,37 +614,37 @@
       <section id="about" class="page" style="display: none;">
         <div class="about-hero text-center">
           <h2 class="about-title">About CrazeFball</h2>
-          <p class="about-subtitle">Premium football gear for every player</p>
+          <p>Premium football gear for every player</p>
         </div>
-        
-        <div class="about-cards grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 3rem;">
-          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+
+        <div class="grid grid-auto" style="margin-bottom: 3rem;">
+          <div class="card" style="padding: 2.5rem; text-align: center;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">🏆</div>
-            <h3 style="color: #333; margin-bottom: 1rem;">Our Mission</h3>
+            <h3 style="margin-bottom: 1rem;">Our Mission</h3>
             <p style="color: #666;">Premium gear without premium prices</p>
           </div>
-          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+          <div class="card" style="padding: 2.5rem; text-align: center;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
-            <h3 style="color: #333; margin-bottom: 1rem;">Our Promise</h3>
+            <h3 style="margin-bottom: 1rem;">Our Promise</h3>
             <p style="color: #666;">Quality tested by real players</p>
           </div>
-          <div class="card" style="padding: 2.5rem; text-align: center; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+          <div class="card" style="padding: 2.5rem; text-align: center;">
             <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
-            <h3 style="color: #333; margin-bottom: 1rem;">Our Vision</h3>
+            <h3 style="margin-bottom: 1rem;">Our Vision</h3>
             <p style="color: #666;">Empowering every football dream</p>
           </div>
         </div>
-        
-        <div class="benefits-section">
+
+        <div>
           <h3 class="section-title gradient-text text-center">Why Choose Us?</h3>
-          <div class="benefits-grid grid grid-auto" id="benefitsGrid"></div>
+          <div class="grid grid-auto" id="benefitsGrid"></div>
         </div>
-        
-        <div class="team-section">
+
+        <div>
           <h3 class="section-title gradient-text text-center">Our Team</h3>
-          <div class="team-grid grid grid-auto" id="teamGrid"></div>
+          <div class="grid grid-auto" id="teamGrid"></div>
         </div>
-        
+
         <div class="final-cta text-center">
           <h3>Ready to Gear Up?</h3>
           <p>Join thousands of satisfied customers</p>
@@ -493,33 +655,35 @@
       <!-- Contact -->
       <section id="contact" class="page" style="display: none;">
         <h2 class="text-center gradient-text" style="font-size: 2.5rem; margin-bottom: 3rem;">Get In Touch</h2>
+
         <div class="contact-info">
           <h3 style="margin-bottom: 1.5rem; text-align: center;">Contact Information</h3>
-          <div class="contact-grid grid" id="contactGrid"></div>
+          <div class="grid grid-auto" id="contactGrid"></div>
         </div>
+
         <div class="contact-form">
           <div class="text-center">
             <h3 class="form-title">Send us a Message</h3>
             <p class="form-subtitle">We'd love to hear from you!</p>
           </div>
-          <div class="form-row grid">
-            <div class="floating-input">
-              <input type="text" id="contactName" placeholder=" " required>
-              <label>Your Name</label>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <input type="text" id="contactName" class="form-input" placeholder="Your Name" required>
             </div>
-            <div class="floating-input">
-              <input type="email" id="contactEmail" placeholder=" " required>
-              <label>Your Email</label>
+            <div class="form-group">
+              <input type="email" id="contactEmail" class="form-input" placeholder="Your Email" required>
             </div>
           </div>
-          <div class="floating-input form-full">
-            <input type="text" id="contactSubject" placeholder=" " required>
-            <label>Subject</label>
+
+          <div class="form-group">
+            <input type="text" id="contactSubject" class="form-input" placeholder="Subject" required>
           </div>
-          <div class="floating-input">
-            <textarea id="contactMessage" rows="5" placeholder=" " required></textarea>
-            <label>Your Message</label>
+
+          <div class="form-group">
+            <textarea id="contactMessage" class="form-input" placeholder="Your Message" rows="5" required></textarea>
           </div>
+
           <button type="button" onclick="Contact.submit()" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
             Send Message 🚀
           </button>
@@ -532,32 +696,35 @@
           <h2 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Customer Reviews</h2>
           <p style="color: #666; font-size: 1.1rem;">See what our customers are saying</p>
         </div>
-        
+
         <div class="review-form">
           <div class="text-center">
             <h3>Share Your Experience</h3>
             <p style="opacity: 0.9; margin-bottom: 2rem;">Help other football enthusiasts discover great gear!</p>
           </div>
-          <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Name</label>
-            <input type="text" id="reviewName" placeholder=" " style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9); font-size: 1rem;" required>
+
+          <div class="form-group">
+            <input type="text" id="reviewName" class="form-input" placeholder="Your Name" required>
           </div>
+
           <div class="text-center" style="margin: 2rem 0;">
             <label style="display: block; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Rate your experience</label>
             <div class="rating-stars" id="ratingStars"></div>
           </div>
-          <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Review</label>
-            <textarea id="reviewMessage" rows="4" placeholder=" " style="width: 100%; padding: 1rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9); font-size: 1rem; resize: vertical;" required></textarea>
+
+          <div class="form-group">
+            <textarea id="reviewMessage" class="form-input" placeholder="Tell us about your experience..." rows="4" required></textarea>
           </div>
+
           <button type="button" onclick="Reviews.submit()" class="btn btn-primary" style="width: 100%;">Submit Review ✨</button>
         </div>
-        
-        <div class="reviews-grid grid grid-auto" id="reviewsList"></div>
+
+        <div class="grid grid-auto" id="reviewsList"></div>
       </section>
     </div>
   </main>
 
+  <!-- Cart -->
   <div class="cart-overlay" id="cartOverlay" onclick="Cart.close()">
     <div class="cart-modal" onclick="event.stopPropagation()">
       <button style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;" onclick="Cart.close()">×</button>
@@ -567,7 +734,7 @@
         <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem;">
           <span>Total: $<span id="cartTotal">0.00</span></span>
         </div>
-        <button class="checkout-btn" onclick="Cart.checkout()" style="background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: bold; width: 100%; cursor: pointer;">Proceed to Checkout</button>
+        <button onclick="Cart.checkout()" style="background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: bold; width: 100%; cursor: pointer;">Proceed to Checkout</button>
       </div>
     </div>
   </div>
@@ -579,18 +746,25 @@
   </footer>
 
   <script>
-    // Data
-    const DATA = {
+    // Configuration
+    const CONFIG = {
+      animationDelay: 2000,
+      feedbackDuration: 2000,
+      cartStorageKey: 'crazefball_cart'
+    };
+
+    // Data Store
+    const Store = {
       products: [
-        {id: 1, name: "Professional Football Cleats", price: 89.99, emoji: "👟", description: "High-performance cleats for serious players"},
-        {id: 2, name: "Training Cones Set", price: 24.99, emoji: "🔺", description: "Professional training cones (12 pack)"},
-        {id: 3, name: "Football Gloves", price: 34.99, emoji: "🧤", description: "Grip-enhanced receiver gloves"},
-        {id: 4, name: "Team Jersey", price: 59.99, emoji: "👕", description: "Official team replica jersey"},
-        {id: 5, name: "Football Helmet", price: 149.99, emoji: "⛑️", description: "Safety-certified protective helmet"},
-        {id: 6, name: "Shoulder Pads", price: 79.99, emoji: "🦺", description: "Lightweight protective shoulder pads"},
-        {id: 7, name: "Football", price: 29.99, emoji: "🏈", description: "Official size regulation football"},
-        {id: 8, name: "Water Bottle", price: 19.99, emoji: "🍶", description: "Insulated sports water bottle"},
-        {id: 9, name: "Team Scarf", price: 22.99, emoji: "🧣", description: "Official team supporter scarf"}
+        {id: 1, name: "Professional Football Cleats", price: 89.99, emoji: "👟", desc: "High-performance cleats"},
+        {id: 2, name: "Training Cones Set", price: 24.99, emoji: "🔺", desc: "Professional training cones (12 pack)"},
+        {id: 3, name: "Football Gloves", price: 34.99, emoji: "🧤", desc: "Grip-enhanced receiver gloves"},
+        {id: 4, name: "Team Jersey", price: 59.99, emoji: "👕", desc: "Official team replica jersey"},
+        {id: 5, name: "Football Helmet", price: 149.99, emoji: "⛑️", desc: "Safety-certified protective helmet"},
+        {id: 6, name: "Shoulder Pads", price: 79.99, emoji: "🦺", desc: "Lightweight protective shoulder pads"},
+        {id: 7, name: "Football", price: 29.99, emoji: "🏈", desc: "Official size regulation football"},
+        {id: 8, name: "Water Bottle", price: 19.99, emoji: "🍶", desc: "Insulated sports water bottle"},
+        {id: 9, name: "Team Scarf", price: 22.99, emoji: "🧣", desc: "Official team supporter scarf"}
       ],
       
       stats: [
@@ -602,342 +776,70 @@
       
       benefits: [
         {icon: "⚡", title: "Fast Shipping", desc: "Get your gear in 24-48 hours"},
-        {icon: "🛡️", title: "Quality Guarantee", desc: "100% satisfaction or money back"},
+        {icon: "🛡️", title: "Quality Guarantee", desc: "100% satisfaction guaranteed"},
         {icon: "💰", title: "Best Prices", desc: "Direct from manufacturers"},
         {icon: "🎯", title: "Expert Selection", desc: "Tested by professional players"}
       ],
       
       team: [
-        {initials: "JD", name: "John Davis", role: "Founder & CEO", bio: "Former college quarterback with 15+ years in sports retail"},
-        {initials: "MR", name: "Maria Rodriguez", role: "Head of Product", bio: "Sports equipment expert and former professional player"},
-        {initials: "DW", name: "David Wilson", role: "Customer Experience", bio: "Dedicated to ensuring every customer has an amazing experience"}
+        {initials: "JD", name: "John Davis", role: "Founder & CEO", bio: "Former college quarterback with 15+ years experience"},
+        {initials: "MR", name: "Maria Rodriguez", role: "Head of Product", bio: "Sports equipment expert and former pro player"},
+        {initials: "DW", name: "David Wilson", role: "Customer Experience", bio: "Dedicated to amazing customer experiences"}
       ],
       
-      contactInfo: [
+      contacts: [
         {icon: "📧", title: "Email", info: "support@crazefball.com"},
         {icon: "📞", title: "Phone", info: "1-800-FOOTBALL"},
         {icon: "📍", title: "Address", info: "123 Stadium Way<br>Sports City, SC 12345"},
         {icon: "🕒", title: "Hours", info: "Monday-Friday<br>9AM-6PM EST"}
       ],
       
-      sampleReviews: [
-        {name: "Mike Johnson", initials: "MJ", rating: 5, text: "Amazing quality cleats! The comfort and grip are outstanding. Definitely recommend CrazeFball for serious players.", date: "2 days ago"},
-        {name: "Sarah Chen", initials: "SC", rating: 5, text: "Fast shipping and excellent customer service. My son loves his new training gear!", date: "1 week ago"},
-        {name: "Carlos Rodriguez", initials: "CR", rating: 5, text: "Great selection of products. Prices are very competitive and the website is easy to navigate.", date: "2 weeks ago"},
-        {name: "Alex Thompson", initials: "AT", rating: 4, text: "Solid football gear at reasonable prices. The helmet I bought fits perfectly and feels very secure.", date: "3 weeks ago"}
+      reviews: [
+        {name: "Mike Johnson", initials: "MJ", rating: 5, text: "Amazing quality cleats! Outstanding comfort and grip.", date: "2 days ago"},
+        {name: "Sarah Chen", initials: "SC", rating: 5, text: "Fast shipping and excellent service. My son loves his gear!", date: "1 week ago"},
+        {name: "Carlos Rodriguez", initials: "CR", rating: 5, text: "Great selection and competitive prices. Easy website to use.", date: "2 weeks ago"},
+        {name: "Alex Thompson", initials: "AT", rating: 4, text: "Solid football gear at reasonable prices. Good quality control.", date: "3 weeks ago"}
       ]
     };
 
-    // Utility Functions
-    const Utils = {
-      createElement: (tag, className, innerHTML) => {
+    // Utilities
+    const $ = {
+      id: id => document.getElementById(id),
+      create: (tag, className, html) => {
         const el = document.createElement(tag);
         if (className) el.className = className;
-        if (innerHTML) el.innerHTML = innerHTML;
+        if (html) el.innerHTML = html;
         return el;
       },
-      
-      render: (containerId, html) => {
-        document.getElementById(containerId).innerHTML = html;
-      },
-      
-      getElement: (id) => document.getElementById(id),
-      
-      showFeedback: (btn, message, color, duration = 2000) => {
-        const original = btn.innerHTML;
-        const originalBg = btn.style.background;
-        btn.innerHTML = message;
-        btn.style.background = color;
-        setTimeout(() => {
-          btn.innerHTML = original;
-          btn.style.background = originalBg;
-        }, duration);
-      }
+      render: (id, html) => document.getElementById(id).innerHTML = html,
+      show: el => el.style.display = 'block',
+      hide: el => el.style.display = 'none'
     };
 
-    // Main App Controller
+    // Core App
     const App = {
-      currentPage: 'home',
-      
       init() {
-        this.createAnimations();
-        this.renderStatics();
-        this.loadProducts();
-        Reviews.loadSamples();
+        this.setupAnimations();
+        this.renderContent();
+        this.bindEvents();
+        Reviews.init();
+        Cart.init();
       },
-      
-      showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-        Utils.getElement(pageId).style.display = 'block';
-        
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        event.target.classList.add('active');
-        
-        this.currentPage = pageId;
-        if (pageId === 'shop') this.loadProducts();
-      },
-      
-      createAnimations() {
-        const animations = ['🏈', '⚽', '🏈', '⚽', '🏈', '⚽'];
-        const container = Utils.getElement('footballAnimation');
-        
-        animations.forEach((emoji, i) => {
-          const football = Utils.createElement('div', 'football', emoji);
-          football.style.cssText = `
-            top: ${Math.random() * 80}%; 
-            left: ${Math.random() * 80}%; 
-            animation-delay: ${-i * 2}s;
-          `;
-          container.appendChild(football);
+
+      setupAnimations() {
+        const container = $.id('footballAnimation');
+        ['🏈', '⚽', '🏈', '⚽', '🏈', '⚽'].forEach((emoji, i) => {
+          const ball = $.create('div', 'football', emoji);
+          ball.style.cssText = `top: ${Math.random() * 80}%; left: ${Math.random() * 80}%; animation-delay: ${-i * 2}s;`;
+          container.appendChild(ball);
         });
       },
-      
-      renderStatics() {
+
+      renderContent() {
         // Stats
-        Utils.render('statsGrid', DATA.stats.map(stat => `
-          <div class="stat-card">
-            <div class="stat-number">${stat.number}</div>
-            <p>${stat.label}</p>
-          </div>
-        `).join(''));
-        
-        // Benefits
-        Utils.render('benefitsGrid', DATA.benefits.map(benefit => `
-          <div class="benefit-card card">
-            <div class="benefit-icon">${benefit.icon}</div>
-            <h4>${benefit.title}</h4>
-            <p>${benefit.desc}</p>
-          </div>
-        `).join(''));
-        
-        // Team
-        Utils.render('teamGrid', DATA.team.map(member => `
-          <div class="team-member card">
-            <div class="member-avatar">${member.initials}</div>
-            <h4>${member.name}</h4>
-            <p class="member-role">${member.role}</p>
-            <p class="member-bio">${member.bio}</p>
-          </div>
-        `).join(''));
-        
-        // Contact Info
-        Utils.render('contactGrid', DATA.contactInfo.map(contact => `
-          <div class="contact-item">
-            <div class="contact-icon">${contact.icon}</div>
-            <strong>${contact.title}:</strong>
-            <p>${contact.info}</p>
-          </div>
-        `).join(''));
-      },
-      
-      loadProducts() {
-        Utils.render('productsGrid', DATA.products.map(product => `
-          <div class="product-card card">
-            <div class="product-image">${product.emoji}</div>
-            <div class="product-info">
-              <div class="product-name">${product.name}</div>
-              <div class="product-price">${product.price}</div>
-              <p style="color: #666; margin-bottom: 1rem;">${product.description}</p>
-              <button class="add-to-cart" onclick="Cart.add(${product.id})">Add to Cart</button>
-            </div>
-          </div>
-        `).join(''));
-      }
-    };
-
-    // Cart Management
-    const Cart = {
-      items: [],
-      
-      add(productId) {
-        const product = DATA.products.find(p => p.id === productId);
-        const existing = this.items.find(item => item.id === productId);
-        
-        if (existing) {
-          existing.quantity += 1;
-        } else {
-          this.items.push({...product, quantity: 1});
-        }
-        
-        this.updateCount();
-        Utils.showFeedback(event.target, 'Added!', '#28a745', 1000);
-      },
-      
-      updateCount() {
-        const count = this.items.reduce((sum, item) => sum + item.quantity, 0);
-        Utils.getElement('cartCount').textContent = count;
-      },
-      
-      toggle() {
-        const overlay = Utils.getElement('cartOverlay');
-        overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
-        if (overlay.style.display === 'block') this.updateDisplay();
-      },
-      
-      close() {
-        Utils.getElement('cartOverlay').style.display = 'none';
-      },
-      
-      updateDisplay() {
-        const cartItems = Utils.getElement('cartItems');
-        const cartTotal = Utils.getElement('cartTotal');
-        
-        if (this.items.length === 0) {
-          cartItems.innerHTML = '<p style="text-align: center; color: #666;">Your cart is empty</p>';
-          cartTotal.textContent = '0.00';
-          return;
-        }
-        
-        Utils.render('cartItems', this.items.map(item => `
-          <div class="cart-item">
-            <div>
-              <strong>${item.name}</strong>
-              <div style="color: #666;">${item.price} each</div>
-            </div>
-            <div class="quantity-controls">
-              <button class="quantity-btn" onclick="Cart.changeQuantity(${item.id}, -1)">-</button>
-              <span style="margin: 0 0.5rem;">${item.quantity}</span>
-              <button class="quantity-btn" onclick="Cart.changeQuantity(${item.id}, 1)">+</button>
-              <button onclick="Cart.remove(${item.id})" style="margin-left: 1rem; background: #dc3545; color: white; border: none; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;">Remove</button>
-            </div>
-          </div>
-        `).join(''));
-        
-        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = total.toFixed(2);
-      },
-      
-      changeQuantity(productId, change) {
-        const item = this.items.find(item => item.id === productId);
-        if (item) {
-          item.quantity += change;
-          if (item.quantity <= 0) {
-            this.remove(productId);
-          } else {
-            this.updateDisplay();
-            this.updateCount();
-          }
-        }
-      },
-      
-      remove(productId) {
-        this.items = this.items.filter(item => item.id !== productId);
-        this.updateDisplay();
-        this.updateCount();
-      },
-      
-      checkout() {
-        if (this.items.length === 0) {
-          alert('Your cart is empty!');
-          return;
-        }
-        
-        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        alert(`Thank you for your order! Total: ${total.toFixed(2)}\n\nDemo store - would redirect to payment processor.`);
-        
-        this.items = [];
-        this.updateCount();
-        this.close();
-      }
-    };
-
-    // Reviews Management
-    const Reviews = {
-      currentRating: 0,
-      
-      loadSamples() {
-        Utils.render('reviewsList', DATA.sampleReviews.map(this.createReviewHTML).join(''));
-        this.createStarRating();
-      },
-      
-      createStarRating() {
-        Utils.render('ratingStars', Array(5).fill().map((_, i) => 
-          `<span onclick="Reviews.setRating(${i + 1})" class="star" data-rating="${i + 1}">⭐</span>`
+        $.render('statsGrid', Store.stats.map(s => 
+          `<div class="stat-card"><div class="stat-number">${s.number}</div><p>${s.label}</p></div>`
         ).join(''));
-      },
-      
-      setRating(rating) {
-        this.currentRating = rating;
-        document.querySelectorAll('.star').forEach((star, index) => {
-          star.style.opacity = index < rating ? '1' : '0.3';
-          star.classList.toggle('active', index < rating);
-        });
-      },
-      
-      submit() {
-        const name = Utils.getElement('reviewName').value.trim();
-        const message = Utils.getElement('reviewMessage').value.trim();
-        
-        if (!name || !message || this.currentRating === 0) {
-          alert('Please fill in all fields and select a rating.');
-          return;
-        }
-        
-        const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-        const newReview = {
-          name, 
-          initials, 
-          rating: this.currentRating, 
-          text: message, 
-          date: "Just now"
-        };
-        
-        const reviewsList = Utils.getElement('reviewsList');
-        reviewsList.insertAdjacentHTML('afterbegin', this.createReviewHTML(newReview));
-        
-        // Reset form
-        Utils.getElement('reviewName').value = '';
-        Utils.getElement('reviewMessage').value = '';
-        this.setRating(0);
-        
-        Utils.showFeedback(event.target, 'Review Submitted! ✅', 'linear-gradient(45deg, #28a745, #20c997)');
-      },
-      
-      createReviewHTML(review) {
-        return `
-          <div class="review-card card">
-            <div class="review-header">
-              <div class="reviewer-info">
-                <div class="reviewer-avatar">${review.initials}</div>
-                <div class="reviewer-name" style="font-weight: 700; color: #333;">${review.name}</div>
-              </div>
-              <div class="review-rating">${'⭐'.repeat(review.rating)}</div>
-            </div>
-            <p class="review-text">${review.text}</p>
-            <div class="review-date">${review.date}</div>
-          </div>
-        `;
-      }
-    };
 
-    // Contact Management
-    const Contact = {
-      submit() {
-        const fields = ['contactName', 'contactEmail', 'contactSubject', 'contactMessage'];
-        const values = fields.map(id => Utils.getElement(id).value.trim());
-        
-        if (values.some(val => !val)) {
-          alert('Please fill in all fields.');
-          return;
-        }
-        
-        Utils.showFeedback(event.target, 'Message Sent! ✅', 'linear-gradient(45deg, #28a745, #20c997)');
-        
-        setTimeout(() => {
-          fields.forEach(id => Utils.getElement(id).value = '');
-        }, 2000);
-      }
-    };
-
-    // Initialize App
-    document.addEventListener('DOMContentLoaded', () => {
-      App.init();
-      
-      // Keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') Cart.close();
-      });
-    });
-  </script>
-</body>
-</html>
+        // Benefits  
+        $.render
