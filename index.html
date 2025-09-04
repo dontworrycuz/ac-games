@@ -313,6 +313,26 @@
       margin-bottom: 0.5rem;
     }
 
+    .github-export {
+      background: linear-gradient(135deg, #24292e 0%, #586069 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+    }
+
+    .code-output {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
     .stat-card { background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); }
     .stat-number { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
 
@@ -478,9 +498,41 @@
           </button>
         </div>
 
-        <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
-          <h3 style="margin-bottom: 1.5rem; color: #333;">Current Products</h3>
+        <!-- GitHub Export Section -->
+        <div class="github-export">
+          <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.5rem;">📝</span>
+            Export Products to Code
+          </h3>
+          <p style="opacity: 0.9; margin-bottom: 1.5rem;">
+            To make your product changes permanent on GitHub, copy the generated JavaScript code below and replace the products array in your HTML file.
+          </p>
+          <button onclick="generateProductsCode()" class="btn btn-primary" style="margin-bottom: 1rem;">
+            Generate Updated Code 🔄
+          </button>
+          <div id="productsCode" class="code-output" style="display: none;"></div>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="color: #333; margin: 0;">Current Products</h3>
+            <button onclick="resetProducts()" style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">Reset to Defaults</button>
+          </div>
           <div id="adminProductsList"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div style="background: rgba(255, 107, 53, 0.1); padding: 1.5rem; border-radius: var(--radius); border-left: 4px solid var(--primary);">
+          <h4 style="color: var(--primary); margin-bottom: 1rem;">💾 Making Changes Permanent</h4>
+          <ol style="color: #666; font-size: 0.9rem; line-height: 1.6;">
+            <li>Add your products using the form above</li>
+            <li>Click "Generate Updated Code" to get the JavaScript</li>
+            <li>Copy the generated code</li>
+            <li>In your GitHub repository, edit your HTML file</li>
+            <li>Find the <code>let products = [...]</code> section</li>
+            <li>Replace it with the generated code</li>
+            <li>Commit and push the changes</li>
+          </ol>
         </div>
       </section>
 
@@ -620,7 +672,7 @@
   </footer>
 
   <script>
-    // Data
+    // PRODUCTS DATA - Replace this section with generated code
     let products = [
       {id: 1, name: "Professional Soccer Cleats", price: 89.99, emoji: "👟", desc: "High-performance cleats", image: null},
       {id: 2, name: "Training Cones Set", price: 24.99, emoji: "🔺", desc: "Professional training cones (12 pack)", image: null},
@@ -632,8 +684,10 @@
       {id: 8, name: "Water Bottle", price: 19.99, emoji: "🍶", desc: "Insulated sports water bottle", image: null},
       {id: 9, name: "Team Scarf", price: 22.99, emoji: "🧣", desc: "Official team supporter scarf", image: null}
     ];
+    // END PRODUCTS DATA
 
     let nextProductId = 10;
+    const originalProducts = [...products]; // Store original for reset
 
     const stats = [
       {number: "1000+", label: "Happy Customers"},
@@ -687,6 +741,40 @@
       if (pageId === 'admin') renderAdminProducts();
     }
 
+    // GitHub Export Function
+    function generateProductsCode() {
+      const codeOutput = document.getElementById('productsCode');
+      const code = `    // PRODUCTS DATA - Replace this section with generated code
+    let products = ${JSON.stringify(products, null, 6)};
+    // END PRODUCTS DATA`;
+      
+      codeOutput.textContent = code;
+      codeOutput.style.display = 'block';
+      
+      // Add copy to clipboard functionality
+      const copyButton = document.createElement('button');
+      copyButton.textContent = 'Copy to Clipboard 📋';
+      copyButton.style.cssText = 'background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin-top: 1rem; width: 100%;';
+      copyButton.onclick = () => {
+        navigator.clipboard.writeText(code).then(() => {
+          copyButton.textContent = 'Copied! ✅';
+          copyButton.style.background = '#28a745';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy to Clipboard 📋';
+            copyButton.style.background = 'var(--primary)';
+          }, 2000);
+        });
+      };
+      
+      // Remove existing copy button if any
+      const existingButton = codeOutput.parentNode.querySelector('button[style*="margin-top: 1rem"]');
+      if (existingButton) existingButton.remove();
+      
+      codeOutput.parentNode.insertBefore(copyButton, codeOutput.nextSibling);
+      
+      alert('Code generated! Copy the code and replace the products section in your GitHub HTML file.');
+    }
+
     // Admin Functions
     function previewImage(event) {
       const file = event.target.files[0];
@@ -733,7 +821,7 @@
           renderProducts();
           renderAdminProducts();
           clearProductForm();
-          alert('Product added successfully!');
+          alert('Product added! Click "Generate Updated Code" to make it permanent.');
         };
         reader.readAsDataURL(imageFile);
       } else {
@@ -741,7 +829,7 @@
         renderProducts();
         renderAdminProducts();
         clearProductForm();
-        alert('Product added successfully!');
+        alert('Product added! Click "Generate Updated Code" to make it permanent.');
       }
     }
 
@@ -766,7 +854,6 @@
         document.getElementById('productDescription').value = product.desc;
         document.getElementById('productEmoji').value = product.emoji;
         
-        // Remove the product and let user re-add it
         deleteProduct(id);
         alert('Product loaded for editing. Make your changes and click "Add Product" to save.');
       }
@@ -777,6 +864,16 @@
         products = products.filter(p => p.id !== id);
         renderProducts();
         renderAdminProducts();
+      }
+    }
+
+    function resetProducts() {
+      if (confirm('Reset to original products? This will remove all your custom products.')) {
+        products = [...originalProducts];
+        nextProductId = 10;
+        renderProducts();
+        renderAdminProducts();
+        alert('Products reset to defaults!');
       }
     }
 
